@@ -1,13 +1,13 @@
 package com.stormit.demo.model;
 
-public class Questions {
+public class Question {
 
     String name;
 
-    public Questions() {
+    public Question() {
     }
 
-    public Questions(String name) {
+    public Question(String name) {
         this.name = name;
     }
 
