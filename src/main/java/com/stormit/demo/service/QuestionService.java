@@ -14,18 +14,20 @@ public class QuestionService {
         return Arrays.asList( new Question("Question 1" ), new Question("Question 2"));
     }
 
-    public Question getQuestions(UUID id) {
-        return null;
+    public Question getQuestion(UUID id) {
+        return new Question("Question " +id);
     }
 
     public Question createQuestion(Question question) {
-        return null;
+
+        question.setId(UUID.randomUUID());
+        return question;
     }
 
     public void deleteQuestion(UUID id) {
     }
 
     public Question updateQuestion(UUID id, Question question) {
-        return null;
+        return question;
     }
 }
