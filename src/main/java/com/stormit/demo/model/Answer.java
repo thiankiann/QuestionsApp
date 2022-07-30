@@ -2,15 +2,15 @@ package com.stormit.demo.model;
 
 import java.util.UUID;
 
-public class Question {
+public class Answer {
 
     private String name;
     private UUID id;
 
-    public Question() {
+    public Answer(){
     }
 
-    public Question(String name) {
+    public Answer(String name) {
         this.name = name;
         this.id = UUID.randomUUID();
     }
@@ -33,7 +33,7 @@ public class Question {
 
     @Override
     public String toString() {
-        return "Question{" +
+        return "Answer{" +
                 "name='" + name + '\'' +
                 ", id=" + id +
                 '}';

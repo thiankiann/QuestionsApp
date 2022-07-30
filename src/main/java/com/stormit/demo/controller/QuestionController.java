@@ -2,6 +2,7 @@ package com.stormit.demo.controller;
 
 import com.stormit.demo.service.QuestionService;
 import com.stormit.demo.model.Question;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,18 +38,24 @@ public class QuestionController {
         return questionService.getQuestions();
     }
     @GetMapping("{id}")
-    Question getQuestions(@PathVariable UUID id){
-        return questionService.getQuestions(id);
+    Question getQuestion(@PathVariable UUID id){
+        return questionService.getQuestion(id);
     }
+
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     Question createQuestion(@RequestBody Question question){
         return questionService.createQuestion(question);
     }
+
     @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     Question updateQuestion(@PathVariable UUID id, Question question){
         return questionService.updateQuestion(id,question);
     }
+
     @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteQuestion(@PathVariable UUID id){
         questionService.deleteQuestion(id);
     }
