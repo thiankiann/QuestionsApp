@@ -44,6 +44,7 @@ public class tasksEntityManager {
         // then
         Long count = entityManager.createQuery("select count(n) from Note n", Long.class)
                 .getSingleResult();
-        assertThat(count).isEqualTo(___);
+        assertThat(count).isEqualTo(2);
     }
+
 }
