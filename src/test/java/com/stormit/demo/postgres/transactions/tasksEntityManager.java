@@ -46,5 +46,58 @@ public class tasksEntityManager {
                 .getSingleResult();
         assertThat(count).isEqualTo(2);
     }
+    @Test
+    void shouldUpdateOneRecord() {
+        //given
+        Note note1 = new Note(1, "Note 1", "Note 1 - content");
+        Note note2 = new Note(2, "Note 2", "Note 2 - content");
+        entityManager.persist(note1);
+        entityManager.persist(note2);
 
+        //when
+        note1.setContent("Updated.");
+        entityManager.merge(note1);
+
+        //then
+        Long count = entityManager.createQuery("select count(n) from Note n where n.content = 'Updated.'",
+                Long.class).getSingleResult();
+        assertThat(count).isEqualTo(1);
+    }
+
+    @Test
+    void shouldFollowEntityLifeCycle() {
+        //transient
+        Note note = new Note(1,"Note","Note content");
+        assertThat(entityManager.contains(note)).isFalse();
+
+        note.setContent("Updated 1");
+        entityManager.flush();
+        assertThat(entityManager.find(Note.class, 1)).isNull();
+
+        //managed
+        entityManager.persist(note);
+        assertThat(entityManager.contains(note)).isTrue();
+
+        note.setContent("Updated 2");
+        entityManager.merge(note);
+        assertThat(entityManager.find(Note.class,1).getContent()).isEqualTo("Updated 2");
+
+        note.setContent("Updated 3");
+        entityManager.flush();  // we shouldn't do it manulally!!
+        assertThat(entityManager.find(Note.class, 1).getContent()).isEqualTo("Updated 3");
+
+        // detached
+        entityManager.detach(note);
+        note.setContent("Updated 4");
+        entityManager.flush(); // we should not do it manually!!
+        assertThat(entityManager.find(Note.class, 1).getContent()).isEqualTo("Updated 3");
+
+        note = entityManager.merge(note);
+        assertThat(entityManager.find(Note.class,1).getContent()).isEqualTo("Updated 4");
+
+        //managed again
+        //removed
+        entityManager.remove(note);
+        assertThat(entityManager.find(Note.class, 1)).isNull();
+    }
 }
