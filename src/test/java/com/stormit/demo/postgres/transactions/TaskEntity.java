@@ -1,6 +1,7 @@
 package com.stormit.demo.postgres.transactions;
 
 import com.stormit.demo.postgres.entity.NoteWithGeneratedIdSequence;
+import com.stormit.demo.postgres.entity.NoteWithGeneratedIdTable;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -31,7 +32,15 @@ public class TaskEntity {
         assertThat(note.getId()).isNotNull();
 
     }
+    @Test
+    void shouldGeneratePrimaryKeyWithSequenceTable() {
+        // given
+        NoteWithGeneratedIdTable note = new NoteWithGeneratedIdTable("Note", "Note content");
 
+        // when
+        entityManager.persist(note);
 
-
+        // then
+        assertThat(note.getId()).isNotNull();
+    }
 }
