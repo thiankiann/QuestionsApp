@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.swing.text.html.parser.Entity;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class TaskEntity {
 
-    @Autowired
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Test
