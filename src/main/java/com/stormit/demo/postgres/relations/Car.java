@@ -19,10 +19,8 @@ public class Car {
         this.id = UUID.randomUUID();
         this.name = name;
     }
-
     public Car() {
     }
-
     public UUID getId() {
         return id;
     }
