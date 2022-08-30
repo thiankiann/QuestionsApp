@@ -45,4 +45,23 @@ public class TaskHQL {
                 .containsExactlyInAnyOrder("Note 1", "Note 2");
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "select note.name from Note note",
+            "select name from Note note"
+    })
+    void shouldSelectSingleFieldFromObject(String hql) {
+        //given
+        entityManager.persist(new Note(1, "Note1", "Note 1"));
+        entityManager.persist(new Note(2, "Note2", "Note 2"));
+
+        //when
+        TypedQuery<String> query = entityManager.createQuery(hql, String.class);
+        List<String> resultList = query.getResultList();
+
+        // then
+        assertThat(resultList).hasSize(2);
+        assertThat(resultList)
+                .containsExactlyInAnyOrder("Note1", "Note2");
+    }
 }
