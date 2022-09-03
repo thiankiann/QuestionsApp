@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.checkerframework.checker.nullness.Opt.get;
 
 
 @SpringBootTest
@@ -63,5 +65,25 @@ public class TaskHQL {
         assertThat(resultList).hasSize(2);
         assertThat(resultList)
                 .containsExactlyInAnyOrder("Note1", "Note2");
+    }
+
+    @ParameterizedTest
+    @ValueSource( strings = {
+            "select note.id, note.name, concat('Note', ' ', note.name) from Note note",
+    })
+    void shouldSelectCustomFields(String hql) {
+
+    //given
+        entityManager.persist(new Note(1, "Note1", "Note 1"));
+    //when
+        Query query = entityManager.createQuery(hql);
+        List resultList = query.getResultList();
+    //then
+    assertThat(resultList).hasSize(1);
+    Object[] object = (Object[]) resultList.get(0);
+
+    assertThat(object[0]).isEqualTo(1);
+    assertThat(object[1]).isEqualTo("Note1");
+    assertThat(object[2]).isEqualTo("Note Note1");
     }
 }
