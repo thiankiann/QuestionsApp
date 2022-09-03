@@ -86,4 +86,24 @@ public class TaskHQL {
     assertThat(object[1]).isEqualTo("Note1");
     assertThat(object[2]).isEqualTo("Note Note1");
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "from Note note where id=1",
+            "from Note note where note.name = 'Note1'",
+            "from Note note where name like '%te1%'"
+    })
+    void shouldFilterObjects(String hql) {
+        // given
+        entityManager.persist(new Note(1, "Note1", "Note 1"));
+        entityManager.persist(new Note(2, "Note2", "Note 2"));
+
+        // when
+        TypedQuery<Note> query = entityManager.createQuery(hql, Note.class);
+        List<Note> resultList = query.getResultList();
+
+        // then
+        assertThat(resultList).hasSize(1);
+        assertThat(resultList.get(0).getName()).isEqualTo("Note1");
+    }
 }
