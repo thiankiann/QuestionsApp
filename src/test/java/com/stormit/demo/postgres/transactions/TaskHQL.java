@@ -106,4 +106,5 @@ public class TaskHQL {
         assertThat(resultList).hasSize(1);
         assertThat(resultList.get(0).getName()).isEqualTo("Note1");
     }
+
 }
