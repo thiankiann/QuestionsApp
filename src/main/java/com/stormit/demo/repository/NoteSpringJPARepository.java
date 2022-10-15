@@ -10,9 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+
 public interface NoteSpringJPARepository extends JpaRepository<Note, Integer> {
-
-
     Optional<Note> findByName(String name);
 
     Optional<Note> findByNameAndId(String name, Integer id);
@@ -20,5 +19,7 @@ public interface NoteSpringJPARepository extends JpaRepository<Note, Integer> {
     List<Note> findAllByContent(String content);
 
     @Query("select note from Note note where mod(note.id, 2) = 0 and note.id > :id")
-    List<Note> findNotesWithEvenIds@Param(("id") int id);
+    List<Note> findNotesWithEvenIds(@Param("id") int id);
+
+
 }
