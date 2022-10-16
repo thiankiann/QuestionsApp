@@ -1,4 +1,4 @@
-package com.stormit.demo.postgres.entity;
+package com.stormit.demo.springdata.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,19 +6,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class NoteWithGeneratedIdSequence {
+public class NoteWithGeneratedIdTable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
 
     private String name;
 
     private String content;
 
-    public NoteWithGeneratedIdSequence() {
+    public NoteWithGeneratedIdTable() {
     }
 
-    public NoteWithGeneratedIdSequence(String name, String content) {
+    public NoteWithGeneratedIdTable(String name, String content) {
         this.name = name;
         this.content = content;
     }

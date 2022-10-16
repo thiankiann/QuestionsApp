@@ -1,0 +1,33 @@
+package com.stormit.demo.postgres;
+
+import com.stormit.demo.postgres.dao.NoteDao;
+import com.stormit.demo.postgres.entitymanager.Note;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import javax.transaction.Transactional;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@SpringBootTest
+@Transactional
+public class TaskDao {
+
+    @Autowired
+    private NoteDao noteDao;
+
+    @Test
+    void shouldUseDao() {
+        //given
+        Note note = new Note(1, "Note1", "Note1");
+
+        //when
+        note = noteDao.create(note);
+
+        // then
+        assertThat(note).isNotNull();
+        assertThat(note.getId()).isEqualTo(1);
+        assertThat(note.getName()).isEqualTo("Note1");
+    }
+}

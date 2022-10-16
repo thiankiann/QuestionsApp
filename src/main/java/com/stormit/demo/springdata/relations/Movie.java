@@ -1,4 +1,4 @@
-package com.stormit.demo.postgres.relations;
+package com.stormit.demo.springdata.relations;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

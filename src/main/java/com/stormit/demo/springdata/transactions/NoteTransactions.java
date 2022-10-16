@@ -1,27 +1,27 @@
-package com.stormit.demo.postgres.entity;
+package com.stormit.demo.springdata.transactions;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.UUID;
 
 @Entity
-public class NoteWithUUID {
+public class NoteTransactions {
 
     @Id
     private UUID id;
 
+    @Column(nullable = false)   // this column won't be null
     private String name;
 
-    private String content;
-
-    public NoteWithUUID() {
+    public NoteTransactions() {
     }
 
-    public NoteWithUUID(String name, String content) {
+    public NoteTransactions(String name) {
         this.id = UUID.randomUUID();
         this.name = name;
-        this.content = content;
     }
+
 
     public UUID getId() {
         return id;
@@ -37,13 +37,5 @@ public class NoteWithUUID {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 }

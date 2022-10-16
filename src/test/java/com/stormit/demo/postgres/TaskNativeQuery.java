@@ -1,4 +1,4 @@
-package com.stormit.demo.postgres.transactions;
+package com.stormit.demo.postgres;
 
 import com.stormit.demo.postgres.entitymanager.Note;
 import com.stormit.demo.postgres.relations.Actor;

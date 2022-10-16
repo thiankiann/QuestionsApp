@@ -1,4 +1,4 @@
-package com.stormit.demo.postgres.transactions;
+package com.stormit.demo.postgres;
 
 import com.stormit.demo.postgres.entity.NoteWithGeneratedIdSequence;
 import com.stormit.demo.postgres.entity.NoteWithGeneratedIdTable;

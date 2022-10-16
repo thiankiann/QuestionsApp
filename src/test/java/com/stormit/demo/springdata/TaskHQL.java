@@ -1,7 +1,6 @@
-package com.stormit.demo.postgres.transactions;
+package com.stormit.demo.springdata;
 
-import com.stormit.demo.postgres.entitymanager.Note;
-import org.junit.jupiter.api.Test;
+import com.stormit.demo.springdata.entitymanager.Note;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.checkerframework.checker.nullness.Opt.get;
 
 
 @SpringBootTest
