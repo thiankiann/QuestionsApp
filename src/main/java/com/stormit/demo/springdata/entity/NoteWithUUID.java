@@ -1,31 +1,33 @@
-package com.stormit.demo.postgres.entitymanager;
+package com.stormit.demo.springdata.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.UUID;
 
 @Entity
-public class Note {
+public class NoteWithUUID {
+
     @Id
-    private int id;
+    private UUID id;
 
     private String name;
 
     private String content;
 
-    public Note() {
+    public NoteWithUUID() {
     }
 
-    public Note(int id, String name, String content) {
-        this.id = id;
+    public NoteWithUUID(String name, String content) {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.content = content;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

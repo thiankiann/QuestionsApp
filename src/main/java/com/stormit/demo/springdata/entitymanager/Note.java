@@ -1,24 +1,22 @@
-package com.stormit.demo.postgres.entity;
+package com.stormit.demo.springdata.entitymanager;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class NoteWithGeneratedIdTable {
+public class Note {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
 
     private String name;
 
     private String content;
 
-    public NoteWithGeneratedIdTable() {
+    public Note() {
     }
 
-    public NoteWithGeneratedIdTable(String name, String content) {
+    public Note(int id, String name, String content) {
+        this.id = id;
         this.name = name;
         this.content = content;
     }

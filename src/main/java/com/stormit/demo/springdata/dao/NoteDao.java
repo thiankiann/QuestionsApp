@@ -1,6 +1,6 @@
-package com.stormit.demo.postgres.dao;
+package com.stormit.demo.springdata.dao;
 
-import com.stormit.demo.postgres.entitymanager.Note;
+import com.stormit.demo.springdata.entitymanager.Note;
 
 public interface NoteDao {
     Note create(Note note);
