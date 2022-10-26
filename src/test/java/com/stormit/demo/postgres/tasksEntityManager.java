@@ -1,6 +1,6 @@
 package com.stormit.demo.postgres;
 
-import com.stormit.demo.postgres.entitymanager.Note;
+import com.stormit.demo.springdata.entitymanager.Note;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

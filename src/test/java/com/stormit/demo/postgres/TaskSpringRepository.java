@@ -1,8 +1,8 @@
 package com.stormit.demo.postgres;
 
-import com.stormit.demo.postgres.entitymanager.Note;
-import com.stormit.demo.repository.NoteSpringCrudRepository;
-import com.stormit.demo.repository.NoteSpringJPARepository;
+import com.stormit.demo.springdata.entitymanager.Note;
+import com.stormit.demo.springdata.repository.NoteSpringCrudRepository;
+import com.stormit.demo.springdata.repository.NoteSpringJPARepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.Optional;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest

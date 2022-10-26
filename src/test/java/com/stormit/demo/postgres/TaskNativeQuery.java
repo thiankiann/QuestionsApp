@@ -1,9 +1,9 @@
 package com.stormit.demo.postgres;
 
-import com.stormit.demo.postgres.entitymanager.Note;
-import com.stormit.demo.postgres.relations.Actor;
-import com.stormit.demo.postgres.relations.Category;
-import com.stormit.demo.postgres.relations.Movie;
+import com.stormit.demo.springdata.entitymanager.Note;
+import com.stormit.demo.springdata.relations.Actor;
+import com.stormit.demo.springdata.relations.Category;
+import com.stormit.demo.springdata.relations.Movie;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;

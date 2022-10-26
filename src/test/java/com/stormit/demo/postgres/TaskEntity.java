@@ -1,15 +1,14 @@
 package com.stormit.demo.postgres;
 
-import com.stormit.demo.postgres.entity.NoteWithGeneratedIdSequence;
-import com.stormit.demo.postgres.entity.NoteWithGeneratedIdTable;
-import com.stormit.demo.postgres.entity.NoteWithUUID;
+import com.stormit.demo.springdata.entity.NoteWithGeneratedIdSequence;
+import com.stormit.demo.springdata.entity.NoteWithGeneratedIdTable;
+import com.stormit.demo.springdata.entity.NoteWithUUID;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import javax.persistence.EntityManager;
-import javax.swing.text.html.parser.Entity;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
