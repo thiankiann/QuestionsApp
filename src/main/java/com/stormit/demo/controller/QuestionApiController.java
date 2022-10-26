@@ -24,12 +24,12 @@ import java.util.UUID;
         ->DELETE/questions/[id]
  */
 @RestController
-@RequestMapping("questions")
-public class QuestionController {
+@RequestMapping("questions/dodalemNaProbe")
+public class QuestionApiController {
 
     private QuestionService questionService;
 
-    public QuestionController(QuestionService questionService) {
+    public QuestionApiController(QuestionService questionService) {
         this.questionService = questionService;
     }
 
