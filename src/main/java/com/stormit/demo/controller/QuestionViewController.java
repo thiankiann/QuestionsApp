@@ -1,7 +1,7 @@
 package com.stormit.demo.controller;
 
 import com.stormit.demo.model.Question;
-import com.stormit.demo.service.QuestionService;
+import com.stormit.demo.service.QuestionsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +15,11 @@ import java.util.UUID;
 @RequestMapping("/questions")
 public class QuestionViewController {
 
-    public QuestionService questionService;
+    public QuestionsService questionsService;
     //public Question question;
 
-    public QuestionViewController(QuestionService questionService) {
-        this.questionService = questionService;
+    public QuestionViewController(QuestionsService questionsService) {
+        this.questionsService = questionsService;
     }
    /* public QuestionViewController(QuestionService questionService, Question question) {
         this.questionService = questionService;
@@ -28,7 +28,7 @@ public class QuestionViewController {
 
     @RequestMapping
     public String indexView(Model model){
-        model.addAttribute("questions", questionService.getQuestions());
+        model.addAttribute("questions", questionsService.getQuestions());
 
      //   System.out.println("id = " + question.getId() );
         return "question/index";
@@ -36,19 +36,20 @@ public class QuestionViewController {
 
     @GetMapping("{id}")
     public String singleView(Model model, @PathVariable UUID id){
-        model.addAttribute("question",questionService.getQuestion(id));
+        model.addAttribute("question", questionsService.getQuestion(id));
         return "question/single";
     }
 
     @GetMapping("add")
     public String addView(Model model){
-        model.addAttribute("add question",new Question() );
+        model.addAttribute("question", new Question());
+
         return "question/add";
     }
 
     @PostMapping
     public String add(Question question){
-        questionService.createQuestion(question);
+        questionsService.createQuestion(question);
 
         return "redirect:/questions";
     }
