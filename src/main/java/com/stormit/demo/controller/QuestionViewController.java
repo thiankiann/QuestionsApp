@@ -30,10 +30,10 @@ public class QuestionViewController {
     public String indexView(Model model){
         model.addAttribute("questions", questionsService.getQuestions());
 
-     //   System.out.println("id = " + question.getId() );
-        return "question/index";
+        return "template";
+      //  return "question/index";
     }
-
+    //   System.out.println("id = " + question.getId() );
     @GetMapping("{id}")
     public String singleView(Model model, @PathVariable UUID id){
         model.addAttribute("question", questionsService.getQuestion(id));
