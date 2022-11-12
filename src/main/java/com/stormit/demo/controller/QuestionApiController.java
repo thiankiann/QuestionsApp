@@ -24,7 +24,7 @@ import java.util.UUID;
         ->DELETE/questions/[id]
  */
 @RestController
-@RequestMapping("questions/dodalemNaProbe")
+@RequestMapping("api/v1/questions")
 public class QuestionApiController {
 
     private QuestionsService questionsService;
@@ -59,6 +59,5 @@ public class QuestionApiController {
     void deleteQuestion(@PathVariable UUID id){
         questionsService.deleteQuestion(id);
     }
-
 
 }
