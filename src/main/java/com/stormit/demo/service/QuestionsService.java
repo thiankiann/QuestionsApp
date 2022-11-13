@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class QuestionService {
+public class QuestionsService {
 
     public List<Question> getQuestions() {
         return Arrays.asList( new Question("Question 1" ), new Question("Question 2"));

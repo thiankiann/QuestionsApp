@@ -1,6 +1,6 @@
 package com.stormit.demo.controller;
 
-import com.stormit.demo.service.QuestionService;
+import com.stormit.demo.service.QuestionsService;
 import com.stormit.demo.model.Question;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -24,41 +24,40 @@ import java.util.UUID;
         ->DELETE/questions/[id]
  */
 @RestController
-@RequestMapping("questions")
-public class QuestionController {
+@RequestMapping("api/v1/questions")
+public class QuestionApiController {
 
-    private QuestionService questionService;
+    private QuestionsService questionsService;
 
-    public QuestionController(QuestionService questionService) {
-        this.questionService = questionService;
+    public QuestionApiController(QuestionsService questionsService) {
+        this.questionsService = questionsService;
     }
 
     @GetMapping
     List<Question> getQuestions(){
-        return questionService.getQuestions();
+        return questionsService.getQuestions();
     }
     @GetMapping("{id}")
     Question getQuestion(@PathVariable UUID id){
-        return questionService.getQuestion(id);
+        return questionsService.getQuestion(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     Question createQuestion(@RequestBody Question question){
-        return questionService.createQuestion(question);
+        return questionsService.createQuestion(question);
     }
 
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     Question updateQuestion(@PathVariable UUID id, Question question){
-        return questionService.updateQuestion(id,question);
+        return questionsService.updateQuestion(id,question);
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteQuestion(@PathVariable UUID id){
-        questionService.deleteQuestion(id);
+        questionsService.deleteQuestion(id);
     }
-
 
 }
