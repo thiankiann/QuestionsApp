@@ -2,6 +2,7 @@ package com.stormit.demo.controller;
 
 import com.stormit.demo.model.Question;
 import com.stormit.demo.service.QuestionsService;
+import com.stormit.demo.category.service.CategoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,11 +17,16 @@ import java.util.UUID;
 public class QuestionViewController {
 
     public QuestionsService questionsService;
+    public CategoryService categoryService;
     //public Question question;
 
-    public QuestionViewController(QuestionsService questionsService) {
+
+    public QuestionViewController(QuestionsService questionsService, CategoryService categoryService) {
         this.questionsService = questionsService;
+        this.categoryService = categoryService;
     }
+
+
    /* public QuestionViewController(QuestionService questionService, Question question) {
         this.questionService = questionService;
         this.question = question;
@@ -29,7 +35,7 @@ public class QuestionViewController {
     @RequestMapping
     public String indexView(Model model){
         model.addAttribute("questions", questionsService.getQuestions());
-
+        model.addAttribute("categories", categoryService.getCategories());
         return "template";
       //  return "question/index";
     }

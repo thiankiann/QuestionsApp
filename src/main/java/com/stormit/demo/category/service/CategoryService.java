@@ -11,7 +11,11 @@ import java.util.UUID;
 @Service
 public class CategoryService {
     public List<Category> getCategories() {
-        return Arrays.asList( new Category("Category 1" ), new Category("Category 2"));
+        return Arrays.asList(
+                new Category("Category 1"),
+                new Category("Category 2"),
+                new Category("Category 3")
+        );
     }
 
     public Category getCategory(UUID id) {
