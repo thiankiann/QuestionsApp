@@ -5,9 +5,9 @@
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
-  <th:block th:replace="admin/template :: navbar" />
+    <th:block th:replace="admin/template :: navbar" />
 
-  <th:block th:replace="admin/template :: sidebar" />
+    <th:block th:replace="admin/template :: sidebar" />
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -32,62 +32,46 @@
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
+                <!-- /.row -->
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-
-                                <p class="card-text">
-                                    Some quick example text to build on the card title and make up the bulk of the card's
-                                    content.
-                                </p>
-
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-
-                        <div class="card card-primary card-outline">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-
-                                <p class="card-text">
-                                    Some quick example text to build on the card title and make up the bulk of the card's
-                                    content.
-                                </p>
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div><!-- /.card -->
-                    </div>
-                    <!-- /.col-md-6 -->
-                    <div class="col-lg-6">
+                    <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="m-0">Featured</h5>
-                            </div>
-                            <div class="card-body">
-                                <h6 class="card-title">Special title treatment</h6>
+                                <h3 class="card-title">Responsive Hover Table</h3>
 
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <div class="card-tools">
+                                    <div class="input-group input-group-sm" style="width: 150px;">
+                                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-default">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive p-0">
+                                <table class="table table-hover text-nowrap">
+                                    <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>#</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="category : ${categories}">
+                                        <td>th:text="${category.name}"</td>
+                                        <td> View Edit  Delete</td>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
                         </div>
-
-                        <div class="card card-primary card-outline">
-                            <div class="card-header">
-                                <h5 class="m-0">Featured</h5>
-                            </div>
-                            <div class="card-body">
-                                <h6 class="card-title">Special title treatment</h6>
-
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
+                        <!-- /.card -->
                     </div>
-                    <!-- /.col-md-6 -->
                 </div>
                 <!-- /.row -->
             </div><!-- /.container-fluid -->
