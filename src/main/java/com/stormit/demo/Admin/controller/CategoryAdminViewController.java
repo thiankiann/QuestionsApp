@@ -1,10 +1,12 @@
 package com.stormit.demo.Admin.controller;
 
+import com.stormit.demo.category.model.Category;
 import com.stormit.demo.category.service.CategoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/admin/categories")
@@ -20,5 +22,17 @@ public class CategoryAdminViewController {
     public String indexView(Model model){
         model.addAttribute("categories", categoryService.getCategories());
         return "admin/category/index";
+    }
+
+    @GetMapping("{id}")
+    public String editView(Model model, @PathVariable UUID id){
+        model.addAttribute("category", categoryService.getCategory(id));
+        return "admin/category/edit";
+    }
+
+    @PostMapping("{id}")
+    public String edit(@ModelAttribute("category")Category category, @PathVariable UUID id){
+        categoryService.updateCategory(id,category);
+        return "redirect:/admin/categories";
     }
 }
