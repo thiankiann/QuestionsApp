@@ -1,4 +1,4 @@
-package com.stormit.demo.Admin.controller;
+package com.stormit.demo.category.controller;
 
 import com.stormit.demo.category.model.Category;
 import com.stormit.demo.category.service.CategoryService;
