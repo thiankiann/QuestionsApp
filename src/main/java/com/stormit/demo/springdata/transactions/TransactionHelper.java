@@ -6,35 +6,35 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.function.Supplier;
 
-@Service
+//@Service
 public class TransactionHelper {
 
-    @Transactional
+  //  @Transactional
     public <T> T withTransaction(Supplier<T> supplier) {
         return supplier.get();
     }
 
-    @Transactional
+   // @Transactional
     public void withTransaction(Runnable runnable) {
         runnable.run();
     }
 
-    @Transactional(readOnly = true)
+    //@Transactional(readOnly = true)
     public <T> T withReadOnlyTransaction(Supplier<T> supplier) {
         return supplier.get();
     }
 
-    @Transactional(readOnly = true)
+   // @Transactional(readOnly = true)
     public void withReadOnlyTransaction(Runnable runnable) {
         runnable.run();
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+   // @Transactional(propagation = Propagation.REQUIRES_NEW)
     public <T> T withNewTransaction(Supplier<T> supplier) {
         return supplier.get();
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    //@Transactional(propagation = Propagation.REQUIRES_NEW)
     public void withNewTransaction(Runnable runnable) {
         runnable.run();
     }

@@ -5,7 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
-@Service
+//@Service
 public class TransactionsExampleService {
 
     private final NoteService noteService;
@@ -14,7 +14,7 @@ public class TransactionsExampleService {
         this.noteService = noteService;
     }
 
-    @Transactional
+   // @Transactional
     public void updateImplicitly(UUID id, String name) {
         NoteTransactions note = noteService.readNote(id);
         note.setName(name);
@@ -23,13 +23,13 @@ public class TransactionsExampleService {
 
     }
 
-    @Transactional
+   // @Transactional
     void updateImplicitlyNonPublic(UUID id, String name) {
         NoteTransactions note = noteService.readNote(id);
         note.setName(name);
     }
 
-    @Transactional
+   // @Transactional
     public void updateWithThrowingRuntimeException(UUID id, String name) {
         NoteTransactions note = noteService.readNote(id);
         note.setName(name);

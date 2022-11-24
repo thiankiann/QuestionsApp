@@ -1,12 +1,10 @@
 package com.stormit.demo.category.controller;
 
-import com.stormit.demo.category.model.Category;
+import com.stormit.demo.category.domain.model.Category;
 import com.stormit.demo.category.service.CategoryService;
-import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController

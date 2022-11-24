@@ -3,9 +3,9 @@ package com.stormit.demo.springdata.entitymanager;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+//@Entity
 public class Note {
-    @Id
+//    @Id
     private int id;
 
     private String name;

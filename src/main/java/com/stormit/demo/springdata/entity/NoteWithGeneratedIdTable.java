@@ -5,10 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+//@Entity
 public class NoteWithGeneratedIdTable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    //@Id
+    //@GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
 
     private String name;

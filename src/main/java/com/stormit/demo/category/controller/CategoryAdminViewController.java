@@ -1,6 +1,6 @@
 package com.stormit.demo.category.controller;
 
-import com.stormit.demo.category.model.Category;
+import com.stormit.demo.category.domain.model.Category;
 import com.stormit.demo.category.service.CategoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
