@@ -1,7 +1,7 @@
-package com.stormit.demo.controller;
+package com.stormit.demo.question.controller;
 
-import com.stormit.demo.model.Answer;
-import com.stormit.demo.service.AnswerService;
+import com.stormit.demo.question.model.Answer;
+import com.stormit.demo.question.service.AnswerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

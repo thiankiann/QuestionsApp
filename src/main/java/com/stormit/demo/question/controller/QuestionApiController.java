@@ -1,7 +1,7 @@
-package com.stormit.demo.controller;
+package com.stormit.demo.question.controller;
 
-import com.stormit.demo.service.QuestionsService;
-import com.stormit.demo.model.Question;
+import com.stormit.demo.question.service.QuestionsService;
+import com.stormit.demo.question.model.Question;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +27,7 @@ import java.util.UUID;
 @RequestMapping("api/v1/questions")
 public class QuestionApiController {
 
-    private QuestionsService questionsService;
+    private final QuestionsService questionsService;
 
     public QuestionApiController(QuestionsService questionsService) {
         this.questionsService = questionsService;

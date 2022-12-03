@@ -1,7 +1,7 @@
-package com.stormit.demo.controller;
+package com.stormit.demo.question.controller;
 
-import com.stormit.demo.model.Question;
-import com.stormit.demo.service.QuestionsService;
+import com.stormit.demo.question.model.Question;
+import com.stormit.demo.question.service.QuestionsService;
 import com.stormit.demo.category.service.CategoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,6 +1,6 @@
-package com.stormit.demo.service;
+package com.stormit.demo.question.service;
 
-import com.stormit.demo.model.Answer;
+import com.stormit.demo.question.model.Answer;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
