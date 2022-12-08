@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 
-@Service
+//@Service
 public class NoteDaoImpl implements NoteDao{
 
     private final EntityManager em;

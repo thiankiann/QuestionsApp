@@ -5,13 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.UUID;
 
-@Entity
+//@Entity
 public class NoteTransactions {
 
-    @Id
+   // @Id
     private UUID id;
 
-    @Column(nullable = false)   // this column won't be null
+    //@Column(nullable = false)   // this column won't be null
     private String name;
 
     public NoteTransactions() {

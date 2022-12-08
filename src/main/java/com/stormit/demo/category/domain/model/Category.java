@@ -1,13 +1,21 @@
-package com.stormit.demo.category.model;
+package com.stormit.demo.category.domain.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.UUID;
 
+@Entity
+@Table(name = "categories")
 public class Category {
 
+    @Id
     UUID id;
     String name;
 
+
     public Category() {
+        this.id = UUID.randomUUID();
     }
 
     public Category(String name) {

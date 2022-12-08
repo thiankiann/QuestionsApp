@@ -1,6 +1,6 @@
 package com.stormit.demo.category.controller;
 
-import com.stormit.demo.category.model.Category;
+import com.stormit.demo.category.domain.model.Category;
 import com.stormit.demo.category.service.CategoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +33,12 @@ public class CategoryAdminViewController {
     @PostMapping("{id}")
     public String edit(@ModelAttribute("category")Category category, @PathVariable UUID id){
         categoryService.updateCategory(id,category);
+        return "redirect:/admin/categories";
+    }
+
+    @GetMapping("{id}/delete")
+    public String deleteView(@PathVariable UUID id){
+        categoryService.deleteCategory(id);
         return "redirect:/admin/categories";
     }
 }

@@ -6,14 +6,14 @@ import javax.persistence.OneToMany;
 import java.util.Set;
 import java.util.UUID;
 
-@Entity
+//@Entity
 public class Category {
-    @Id
+  //  @Id
     private UUID id;
 
     private String name;
 
-    @OneToMany(mappedBy = "category")
+    //@OneToMany(mappedBy = "category")
     private Set<Movie> movies;
 
     public Category() {

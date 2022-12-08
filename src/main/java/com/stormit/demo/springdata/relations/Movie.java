@@ -7,17 +7,17 @@ import javax.persistence.ManyToOne;
 import java.util.Set;
 import java.util.UUID;
 
-@Entity
+//@Entity
 public class Movie {
-    @Id
+   // @Id
     private UUID id;
 
     private String name;
 
-    @ManyToMany
+    //@ManyToMany
     private Set<Actor> actors;
 
-    @ManyToOne
+   // @ManyToOne
     private Category category;
 
     public Movie() {

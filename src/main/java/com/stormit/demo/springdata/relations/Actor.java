@@ -6,15 +6,15 @@ import javax.persistence.ManyToMany;
 import java.util.Set;
 import java.util.UUID;
 
-@Entity
+//@Entity
 public class Actor {
 
-    @Id
+  //  @Id
     private UUID id;
 
     private String name;
 
-    @ManyToMany(mappedBy = "actors")
+   // @ManyToMany(mappedBy = "actors")
     private Set<Movie> movies;
 
     public Actor() {
