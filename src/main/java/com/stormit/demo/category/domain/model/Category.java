@@ -10,9 +10,9 @@ import java.util.UUID;
 public class Category {
 
     @Id
-    UUID id;
-    String name;
+    private UUID id;
 
+    private String name;
 
     public Category() {
         this.id = UUID.randomUUID();
