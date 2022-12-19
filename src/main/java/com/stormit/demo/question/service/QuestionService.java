@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class QuestionsService {
+public class QuestionService {
 
-    private final QuestionRepository questionRepository;
+    private QuestionRepository questionRepository;
 
-    public QuestionsService(QuestionRepository questionRepository) {
+    public QuestionService(QuestionRepository questionRepository) {
         this.questionRepository = questionRepository;
     }
 
@@ -22,6 +22,7 @@ public class QuestionsService {
     public List<Question> getQuestions() {
         return questionRepository.findAll();
     }
+
     @Transactional(readOnly = true)
     public Question getQuestion(UUID id) {
         return questionRepository.getById(id);
@@ -29,16 +30,16 @@ public class QuestionsService {
 
     @Transactional
     public Question createQuestion(Question questionRequest) {
-
         Question question = new Question();
 
         question.setName(questionRequest.getName());
 
         return questionRepository.save(question);
     }
+
     @Transactional
     public Question updateQuestion(UUID id, Question questionRequest) {
-        Question question =questionRepository.getById(id);
+        Question question = questionRepository.getById(id);
 
         question.setName(questionRequest.getName());
 
@@ -50,5 +51,8 @@ public class QuestionsService {
         questionRepository.deleteById(id);
     }
 
-
+    @Transactional(readOnly = true)
+    public List<Question> findAllByCategoryId(UUID id) {
+        return questionRepository.findAllByCategoryId(id);
+    }
 }

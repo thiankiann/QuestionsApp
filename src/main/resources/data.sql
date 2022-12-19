@@ -1,7 +1,7 @@
 insert into categories (id, name) values
+(gen_random_uuid(), 'Turystyka'),
 (gen_random_uuid(), 'Zdrowie'),
 (gen_random_uuid(), 'Zwierzęta'),
-(gen_random_uuid(), 'Turystyka'),
 (gen_random_uuid(), 'Uroda i Styl'),
 (gen_random_uuid(), 'Kultura'),
 (gen_random_uuid(), 'Edukacja'),
@@ -24,3 +24,6 @@ insert into categories (id, name) values
 (gen_random_uuid(), 'Związki'),
 (gen_random_uuid(), 'Inne');
 
+insert into questions (id, name, category_id) values
+    (gen_random_uuid(), 'Gdzie najlepiej spedzic wakacje w Polsce', (select id from categories where name = 'Turystyka')),
+    (gen_random_uuid(), 'Gdzie najlepiej spedzic wakacje w Europie', (select id from categories where name = 'Turystyka'));
