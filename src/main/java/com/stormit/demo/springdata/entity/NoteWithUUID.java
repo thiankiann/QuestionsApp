@@ -4,10 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.UUID;
 
-@Entity
+//@Entity
 public class NoteWithUUID {
 
-    @Id
+   // @Id
     private UUID id;
 
     private String name;
