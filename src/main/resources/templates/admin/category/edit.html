@@ -32,47 +32,57 @@
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
+                <form method="post" th:object="${category}">
+                    <div class="error" th:if="${#fields.hasAnyErrors()}">
+                        <ul>
+                            <li th:each="err  : ${#fields.allErrors()}" th:text="${err}"/>
+                        </ul>
+
+                    </div>
                 <!-- /.row -->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Responsive Hover Table</h3>
 
-                                <div class="card-tools">
-                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Responsive Hover Table</h3>
 
-                                        <div class="input-group-append">
-                                            <button type="submit" class="btn btn-default">
-                                                <i class="fas fa-search"></i>
-                                            </button>
+                                    <div class="card-tools">
+                                        <div class="input-group input-group-sm" style="width: 150px;">
+                                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-default">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- /.card-header -->
-                            <!-- form start -->
-                            <form method="post" th:object="${category}">
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label for="categoryName">Name</label>
-                                        <input th:field="*{name}" type="text" class="form-control" id="categoryName" placeholder="Category name">
-                                        <input th:field="*{id}" type="hidden" />
+                                <!-- /.card-header -->
+                                <!-- form start -->
+
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="categoryName">Name</label>
+                                            <input th:field="*{name}" type="text" class="form-control" id="categoryName" placeholder="Category name">
+                                            <input th:field="*{id}" type="hidden" />
+                                        </div>
                                     </div>
-                                </div>
+                                    <!-- /.card-body -->
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+
+                            </div>
+                            <!-- /.card -->
                                 <!-- /.card-body -->
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Save</button>
-                                </div>
-                            </form>
                         </div>
-                        <!-- /.card -->
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
+                            <!-- /.card -->
                     </div>
-                </div>
+
+
+                </form>
                 <!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
