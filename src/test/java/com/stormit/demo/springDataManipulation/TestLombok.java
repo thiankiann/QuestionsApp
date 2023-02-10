@@ -116,10 +116,10 @@ public class TestLombok {
         User1 user1 = new User1();
         User2 user2 = new User2();
 
-        assertEquals("null", user1.getName());
+        assertEquals(null, user1.getName());
 
-        assertEquals("null", user2.getName());
-        assertEquals("null", user2.getSurname());
+        assertEquals(null, user2.getName());
+        assertEquals(null, user2.getSurname());
     }
 
     @Test
