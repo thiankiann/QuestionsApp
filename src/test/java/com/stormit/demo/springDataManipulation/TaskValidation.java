@@ -24,9 +24,9 @@ public class TaskValidation {
         User user = new User();
         user.setId(1);
         user.setUsername("stormit");
-        user.setAge(22);
-        user.setName("Tomek");
-        user.setSurname("Woliński");
+        user.setAge(39);
+        user.setName("Mariusz");
+        user.setSurname("Kacprzak");
 
         // when
         Throwable throwable = Assertions.catchThrowable(() -> userService.createUser(user));
