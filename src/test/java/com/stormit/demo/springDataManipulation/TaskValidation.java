@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.ConstraintViolationException;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -49,6 +51,37 @@ public class TaskValidation {
         assertThat(throwable)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("User.username can't be null");
+    }
 
+    @Test
+    void shouldFailOnBeanValidation() {
+        // given
+        User user = new User();
+        user.setId(1);
+        user.setUsername("stormit");
+
+        // when
+        Throwable throwable = Assertions.catchThrowable(() -> userService.createUser(user));
+
+        assertThat(throwable)
+                .isInstanceOf(ConstraintViolationException.class)
+                .hasMessage("Error occurred: \nPlease insert the name\nYou have to be adult\n");
+    }
+
+    @Test
+    void shouldFailOnProhibitedUsername() {
+        // given
+        User user = new User();
+        user.setId(1);
+        user.setUsername("admin");
+        user.setAge(30);
+        user.setName("Tomek");
+
+        // when
+        Throwable throwable = Assertions.catchThrowable(() -> userService.createUser(user));
+
+        assertThat(throwable)
+                .isInstanceOf(ConstraintViolationException.class)
+                .hasMessage("Error occurred: \nUsername is invalid\n");
     }
 }
