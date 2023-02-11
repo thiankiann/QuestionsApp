@@ -35,4 +35,20 @@ public class TaskValidation {
         assertThat(throwable).isNull();
         assertThat(userRepository.findById(1)).isPresent();
     }
+
+    @Test
+    void shouldFailOnServiceValidation() {
+        //given
+        User user = new User();
+        user.setId(1);
+
+        //when
+        Throwable throwable = Assertions.catchThrowable(() -> userService.createUser(user));
+
+        //then
+        assertThat(throwable)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("User.username can't be null");
+
+    }
 }
