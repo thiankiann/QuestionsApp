@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf – add new note</title>
+    <style>
+        .row {
+            margin: 15px;
+        }
+
+        .row label {
+            width: 100%;
+            display: block;
+        }
+
+        .error {
+            color: red;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<h1 th:text="${message}"></h1>
+
+<h1 th:text="${success}" th:if="${success}"/>
+<h1 th:text="${error}" th:if="${error}"/>
+
+<form th:object="${note}" method="post" th:attr="action=@{/notes/add-prg}" id="form">
+
+    <div th:if="${#fields.hasAnyErrors()}">
+        <ul class="error">
+            <li th:each="err : ${#fields.allErrors()}" th:text="${err}"/>
+        </ul>
+    </div>
+
+    <p class="row">
+        <label for="name">Name</label>
+        <span th:if="${#fields.hasErrors('name')}"
+              th:errorclass="error" th:errors="*{name}">Invalid name</span>
+        <input type="text" id="name" th:field="*{name}" />
+    </p>
+    <p class="row">
+        <label for="content">Content</label>
+        <span th:if="${#fields.hasErrors('content')}"
+              th:errorclass="error" th:errors="*{content}">Invalid content</span>
+        <input type="text" id="content" th:field="*{content}" />
+    </p>
+
+    <input type="submit" value="Save" />
+</form>
+</body>
+</html>

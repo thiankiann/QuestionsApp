@@ -1,0 +1,16 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List of notes</title>
+</head>
+<body>
+<h1>Notes</h1>
+
+<h2 th:text="${success}" th:if="${success}"/>
+<h2 th:text="${error}" th:if="${error}"/>
+
+<ul>
+    <li th:each="note : ${notes}" th:text="${note}"></li>
+</ul>
+</body>
+</html>
