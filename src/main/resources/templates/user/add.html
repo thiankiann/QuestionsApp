@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Thymeleaf – form validation</title>
+        <style>
+            .row {
+                margin: 15px;
+            }
+
+            .row label {
+                width: 100%;
+                display: block;
+            }
+
+            .error {
+                color: red;
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <form th:object="${user}" method="post" th:attr="action=@{/users/add}" id="form" onsubmit="return formValidation()">
+
+            <div th:if="${#fields.hasAnyErrors()}">
+                <ul class="error">
+                    <li th:each="err : ${#fields.allErrors()}" th:text="${err}"/>
+                </ul>
+            </div>
+
+            <p class="row">
+                <label for="username">Username</label>
+                <span th:if="${#fields.hasErrors('username')}"
+                      th:errorclass="error" th:errors="*{username}">Invalid username</span>
+                <input type="text" id="username" th:field="*{username}" />
+            </p>
+            <p class="row">
+                <label for="name">Name</label>
+                <span th:if="${#fields.hasErrors('name')}"
+                      th:errorclass="error" th:errors="*{name}">Invalid name</span>
+                <input type="text" id="name" th:field="*{name}" />
+            </p>
+            <p class="row">
+                <label for="surname">Surname</label>
+                <span th:if="${#fields.hasErrors('surname')}"
+                      th:errorclass="error" th:errors="*{surname}">Invalid surname</span>
+                <input type="text" id="surname" th:field="*{surname}" />
+            </p>
+            <p class="row">
+                <label for="age">Age</label>
+                <span th:if="${#fields.hasErrors('age')}"
+                      th:errorclass="error" th:errors="*{age}">Invalid age</span>
+                <input type="text" id="age" th:field="*{age}" />
+            </p>
+
+            <input type="submit" value="Save" />
+        </form>
+
+        <script>
+            // document.getElementById('form').onsubmit = function(){alert('hacked'); return true;}
+            function formValidation(){
+                let age = document.getElementById('age');
+                if(age.value == ''){
+                    alert("Age can't be null");
+                    return false;
+                }
+
+                return true;
+            }
+        </script>
+    </body>
+</html>
