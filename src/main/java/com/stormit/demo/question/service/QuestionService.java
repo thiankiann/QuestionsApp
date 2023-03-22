@@ -2,10 +2,11 @@ package com.stormit.demo.question.service;
 
 import com.stormit.demo.question.model.Question;
 import com.stormit.demo.question.repository.QuestionRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -54,5 +55,10 @@ public class QuestionService {
     @Transactional(readOnly = true)
     public List<Question> findAllByCategoryId(UUID id) {
         return questionRepository.findAllByCategoryId(id);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Question> findByQuery(String query, Pageable pageable) {
+        return questionRepository.findByQuery(query, pageable);
     }
 }

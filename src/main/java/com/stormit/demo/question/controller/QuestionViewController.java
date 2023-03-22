@@ -1,8 +1,10 @@
 package com.stormit.demo.question.controller;
 
-import com.stormit.demo.question.model.Question;
-import com.stormit.demo.question.service.QuestionService;
+import com.stormit.demo.IdeasConfiguration;
 import com.stormit.demo.category.service.CategoryService;
+import com.stormit.demo.question.model.Question;
+import com.stormit.demo.question.service.AnswerService;
+import com.stormit.demo.question.service.QuestionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,14 +18,17 @@ import java.util.UUID;
 @RequestMapping("/questions")
 public class QuestionViewController {
 
-    public QuestionService questionService;
-    public CategoryService categoryService;
-    //public Question question;
+    private final QuestionService questionService;
+    private final AnswerService answerService;
+    private final CategoryService categoryService;
+    private final IdeasConfiguration ideasConfiguration;
 
 
-    public QuestionViewController(QuestionService questionService, CategoryService categoryService) {
+    public QuestionViewController(QuestionService questionService, AnswerService answerService, CategoryService categoryService, IdeasConfiguration ideasConfiguration) {
         this.questionService = questionService;
+        this.answerService = answerService;
         this.categoryService = categoryService;
+        this.ideasConfiguration = ideasConfiguration;
     }
 
 
@@ -32,12 +37,12 @@ public class QuestionViewController {
         this.question = question;
     }*/
 
-    @RequestMapping
+    @GetMapping
     public String indexView(Model model){
         model.addAttribute("questions", questionService.getQuestions());
-        model.addAttribute("categories", categoryService.getCategories());
-        return "template";
-      //  return "question/index";
+        //addGlobalAttributes(model);
+
+        return "question/index";
     }
     //   System.out.println("id = " + question.getId() );
     @GetMapping("{id}")
