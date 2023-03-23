@@ -4,8 +4,11 @@ import com.stormit.demo.category.domain.model.Category;
 import com.stormit.demo.category.service.CategoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @Controller
@@ -31,8 +34,25 @@ public class CategoryAdminViewController {
     }
 
     @PostMapping("{id}")
-    public String edit(@ModelAttribute("category")Category category, @PathVariable UUID id){
-        categoryService.updateCategory(id,category);
+    public String edit(@PathVariable UUID id,
+                       @Valid @ModelAttribute("category") Category category,
+                       BindingResult bindingResult,
+                       RedirectAttributes ra,
+                       Model model){
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("category", category);
+            model.addAttribute("message", "blad zapisu");
+            return "admin/category/edit";
+        }
+        try {
+            categoryService.updateCategory(id,category);
+            ra.addFlashAttribute("message", "Category saved");
+        } catch (Exception e) {
+            model.addAttribute("category", category);
+            model.addAttribute("message", "Nieznany blad zapisu");
+            return"admin/category/edit";
+        }
         return "redirect:/admin/categories";
     }
 
