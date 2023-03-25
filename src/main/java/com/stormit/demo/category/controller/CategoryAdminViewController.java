@@ -2,6 +2,7 @@ package com.stormit.demo.category.controller;
 
 import com.stormit.demo.category.domain.model.Category;
 import com.stormit.demo.category.service.CategoryService;
+import com.stormit.demo.common.dto.Message;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,23 +43,24 @@ public class CategoryAdminViewController {
 
         if(bindingResult.hasErrors()){
             model.addAttribute("category", category);
-            model.addAttribute("message", "blad zapisu");
+            model.addAttribute("message", Message.error("blad zapisu"));
             return "admin/category/edit";
         }
         try {
             categoryService.updateCategory(id,category);
-            ra.addFlashAttribute("message", "Category saved");
+            ra.addFlashAttribute("message", Message.info("Category saved"));
         } catch (Exception e) {
             model.addAttribute("category", category);
-            model.addAttribute("message", "Nieznany blad zapisu");
+            model.addAttribute("message",  Message.error("Nieznany blad zapisu"));
             return"admin/category/edit";
         }
         return "redirect:/admin/categories";
     }
 
     @GetMapping("{id}/delete")
-    public String deleteView(@PathVariable UUID id){
+    public String deleteView(@PathVariable UUID id, RedirectAttributes ra){
         categoryService.deleteCategory(id);
+        ra.addFlashAttribute("message", Message.info("Kategoria usunieta"));
         return "redirect:/admin/categories";
     }
 }

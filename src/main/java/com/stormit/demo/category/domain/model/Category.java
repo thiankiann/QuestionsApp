@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.UUID;
 
 @Entity
@@ -13,7 +14,8 @@ public class Category {
     @Id
     private UUID id;
 
-    @NotBlank(message = "QuestionsAppV2.validation.name.NotBlank.message")
+    @NotBlank(message = "You need a name of category to save it")
+    @Size(min = 3, max = 255)
     private String name;
 
     public Category() {
