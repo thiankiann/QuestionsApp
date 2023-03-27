@@ -3,6 +3,7 @@ package com.stormit.demo.category.controller;
 import com.stormit.demo.category.domain.model.Category;
 import com.stormit.demo.category.service.CategoryService;
 import com.stormit.demo.common.dto.Message;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,8 +24,8 @@ public class CategoryAdminViewController {
     }
 
     @GetMapping
-    public String indexView(Model model){
-        model.addAttribute("categories", categoryService.getCategories());
+    public String indexView(Pageable pageable, Model model){
+        model.addAttribute("categoriesPage", categoryService.getCategories(pageable));
         return "admin/category/index";
     }
 

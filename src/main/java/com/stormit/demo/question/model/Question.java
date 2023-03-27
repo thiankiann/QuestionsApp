@@ -4,6 +4,7 @@ package com.stormit.demo.question.model;
 import com.stormit.demo.category.domain.model.Category;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -17,23 +18,18 @@ public class Question {
 
     private String name;
 
-    @OneToMany(mappedBy = "question")
-    private Set<Answer> answers;
-
     @ManyToOne
     private Category category;
+
+    @OneToMany(mappedBy = "question")
+    private Set<Answer> answers;
 
     public Question() {
         this.id = UUID.randomUUID();
     }
 
-    public Question(String name) {
-        this();
-        this.name = name;
-    }
-
     public Question addAnswer(Answer answer){
-        if(answer == null){
+        if(answers == null){
             answers = new LinkedHashSet<>();
         }
 
@@ -43,12 +39,21 @@ public class Question {
         return this;
     }
 
+    public Question(String name) {
+        this();
+        this.name = name;
+    }
+
     public Set<Answer> getAnswers() {
-        return answers;
+        return Collections.unmodifiableSet(answers);
     }
 
     public Category getCategory() {
         return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getName() {
