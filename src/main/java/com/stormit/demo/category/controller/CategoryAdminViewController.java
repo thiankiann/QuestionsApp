@@ -3,6 +3,8 @@ package com.stormit.demo.category.controller;
 import com.stormit.demo.category.domain.model.Category;
 import com.stormit.demo.category.service.CategoryService;
 import com.stormit.demo.common.dto.Message;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,7 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Controller
 @RequestMapping("/admin/categories")
@@ -23,8 +28,11 @@ public class CategoryAdminViewController {
     }
 
     @GetMapping
-    public String indexView(Model model){
-        model.addAttribute("categories", categoryService.getCategories());
+    public String indexView(Pageable pageable, Model model){
+        Page<Category> categoriesPage = categoryService.getCategories(pageable);
+        model.addAttribute("categoriesPage", categoryService.getCategories(pageable));
+        paging(model, categoriesPage);
+
         return "admin/category/index";
     }
 
@@ -62,5 +70,15 @@ public class CategoryAdminViewController {
         categoryService.deleteCategory(id);
         ra.addFlashAttribute("message", Message.info("Kategoria usunieta"));
         return "redirect:/admin/categories";
+    }
+
+    private void paging(Model model, Page page) {
+        int totalPages = page.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers" , pageNumbers);
+        }
     }
 }

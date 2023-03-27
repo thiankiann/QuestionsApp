@@ -1,8 +1,10 @@
 package com.stormit.demo.question.controller;
 
 import com.stormit.demo.question.model.Question;
+import com.stormit.demo.question.service.AnswerService;
 import com.stormit.demo.question.service.QuestionService;
 import com.stormit.demo.category.service.CategoryService;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,7 @@ import java.util.UUID;
 public class QuestionViewController {
 
     public QuestionService questionService;
+    public AnswerService answerService;
     public CategoryService categoryService;
     //public Question question;
 
@@ -35,14 +38,15 @@ public class QuestionViewController {
     @RequestMapping
     public String indexView(Model model){
         model.addAttribute("questions", questionService.getQuestions());
-        model.addAttribute("categories", categoryService.getCategories());
-        return "template";
-      //  return "question/index";
+        model.addAttribute("categories", categoryService.getCategories(Pageable.unpaged()));
+       return "question/index";
     }
-    //   System.out.println("id = " + question.getId() );
+
     @GetMapping("{id}")
     public String singleView(Model model, @PathVariable UUID id){
         model.addAttribute("question", questionService.getQuestion(id));
+        model.addAttribute("answer", answerService.getAnswers(id));
+        model.addAttribute("categories", categoryService.getCategories(Pageable.unpaged()));
         return "question/single";
     }
 
