@@ -34,7 +34,7 @@ public class CategoryAdminViewController {
                             Model model){
 
         Page<Category> categoriesPage = categoryService.getCategories(search, pageable);
-        model.addAttribute("categoriesPage", categoryService.getCategories(pageable));
+        model.addAttribute("categoriesPage", categoriesPage);
         model.addAttribute("search", search);
         paging(model, categoriesPage);
 

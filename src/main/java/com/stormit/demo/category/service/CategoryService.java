@@ -25,13 +25,11 @@ public class CategoryService {
 
     @Transactional(readOnly = true)
     public Page<Category> getCategories(String search, Pageable pageable) {
-
-        if(search == null){
+        if(search == null) {
             return categoryRepository.findAll(pageable);
         } else {
-            return categoryRepository.findByNameContaining(search, pageable);
+            return categoryRepository.findByNameContainingIgnoreCase(search, pageable);
         }
-
     }
 
     @Transactional(readOnly = true)
