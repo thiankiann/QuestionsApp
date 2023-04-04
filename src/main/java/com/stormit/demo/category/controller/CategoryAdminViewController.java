@@ -4,7 +4,9 @@ import com.stormit.demo.category.domain.model.Category;
 import com.stormit.demo.category.service.CategoryService;
 import com.stormit.demo.common.dto.Message;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,8 +32,14 @@ public class CategoryAdminViewController {
     @GetMapping
     public String indexView(
                             @RequestParam(name = "s", required = false) String search,
-                            Pageable pageable,
-                            Model model){
+                            @RequestParam(name = "field", required = false, defaultValue = "id") String field,
+                            @RequestParam(name = "direction", required = false, defaultValue = "asc") String direction,
+                            @RequestParam(name = "page", required = false, defaultValue = "0") int page,
+                            @RequestParam(name = "size", required = false, defaultValue = "10") String size,
+                            Model model
+    ){
+        Pageable pageable = PageRequest.of(page, size, Sort.Direction.fromString(direction),field);
+
 
         Page<Category> categoriesPage = categoryService.getCategories(search, pageable);
         model.addAttribute("categoriesPage", categoriesPage);
