@@ -63,7 +63,8 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="category : ${categoriesPage.content}">
+                                    <tr th:each="category, it : ${categoriesPage.content}">
+                                        <td th:text="${it.index} + 1 "></td>
                                         <td th:text="${category.name}"></td>
                                         <td>
                                             <a th:href="@{'/categories/'+${category.id}}" class="btn btn-primary btn-sm">

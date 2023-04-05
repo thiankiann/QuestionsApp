@@ -35,15 +35,22 @@ public class CategoryAdminViewController {
                             @RequestParam(name = "field", required = false, defaultValue = "id") String field,
                             @RequestParam(name = "direction", required = false, defaultValue = "asc") String direction,
                             @RequestParam(name = "page", required = false, defaultValue = "0") int page,
-                            @RequestParam(name = "size", required = false, defaultValue = "10") String size,
+                            @RequestParam(name = "size", required = false, defaultValue = "10") int size,
                             Model model
     ){
-        Pageable pageable = PageRequest.of(page, size, Sort.Direction.fromString(direction),field);
+        Pageable pageable = PageRequest.of(page, size, Sort.Direction.fromString(direction), field);
 
+        String reverseSort = null;
+        if("asc".equals(direction)){
+            reverseSort = "desc";
+        }else {
+            reverseSort = "asc";
+        }
 
         Page<Category> categoriesPage = categoryService.getCategories(search, pageable);
         model.addAttribute("categoriesPage", categoriesPage);
         model.addAttribute("search", search);
+        model.addAttribute("reverseSort", reverseSort);
         paging(model, categoriesPage);
 
         return "admin/category/index";
