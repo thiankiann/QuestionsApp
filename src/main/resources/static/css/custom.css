@@ -1,6 +1,11 @@
 .error {
-    color: red;
+    color: #ff0000;
 }
-
+.sort-asc:after {
+    content: " ↑";
+}
+.sort-desc:after {
+    content: " ↓";
+}
 
 
