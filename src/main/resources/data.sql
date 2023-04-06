@@ -27,3 +27,7 @@ insert into categories (id, name) values
 insert into questions (id, name, category_id) values
     (gen_random_uuid(), 'Gdzie najlepiej spedzic wakacje w Polsce', (select id from categories where name = 'Turystyka')),
     (gen_random_uuid(), 'Gdzie najlepiej spedzic wakacje w Europie', (select id from categories where name = 'Turystyka'));
+
+insert into questions (id, name, category_id) values
+    (gen_random_uuid(),'Dlaczego waro uczyc sie programowania?',(select id from categories where name = 'Edukacja')),
+    (gen_random_uuid(),'Dlaczego Java jest swietnym jezykiem do nauki ?',(select id from categories where name = 'Edukacja'));

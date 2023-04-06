@@ -1,12 +1,12 @@
 package com.stormit.demo.question.service;
 
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import com.stormit.demo.IdeasConfiguration;
 import com.stormit.demo.question.domain.model.Question;
 import com.stormit.demo.question.domain.repository.QuestionRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -56,4 +56,9 @@ public class QuestionService {
 	public List<Question> findAllByCategoryId(UUID id) {
 		return questionRepository.findAllByCategoryId(id);
 	}
+
+	@Transactional(readOnly = true)
+    public Page<Question> findHot(Pageable pageable) {
+		return questionRepository.findHot(pageable);
+    }
 }
