@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+
+import static com.stormit.demo.common.ControllerUtils.paging;
 
 @Controller
 @RequestMapping("/admin/categories")
@@ -91,7 +90,7 @@ public class CategoryAdminViewController {
         ra.addFlashAttribute("message", Message.info("Kategoria usunieta"));
         return "redirect:/admin/categories";
     }
-
+/*
     private void paging(Model model, Page page) {
         int totalPages = page.getTotalPages();
         if (totalPages > 0) {
@@ -100,5 +99,5 @@ public class CategoryAdminViewController {
                     .collect(Collectors.toList());
             model.addAttribute("pageNumbers" , pageNumbers);
         }
-    }
+    } */
 }
