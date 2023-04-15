@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="template :: head(title = '100 ideas - wyszukiwarka')" />
+<head th:replace="template :: head(title = '100 ideas – wyszukiwarka')" />
 <body>
 <th:block th:replace="template :: header" />
 
@@ -12,8 +12,10 @@
                 <input type="text" name="query" th:value="${query}"/>
                 <button class="btn btn-primary" type="submit">Szukaj</button>
             </form>
-            <p th:if="${query != null and questionsPage.getNumberOfElements() == 0}">Brak Wynikow</p>
-            <article class="blog-post" th:if="${questionsPage != null and questionPage.totalElements > 0}">
+
+            <p th:if="${query != null and questionsPage.getNumberOfElements() == 0 }">Brak wyników</p>
+
+            <article class="blog-post" th:if="${questionsPage != null and questionsPage.totalElements > 0}">
                 <table class="table">
                     <thead>
                     <tr>
@@ -33,9 +35,10 @@
 
             </article>
 
-            <nav th:if="${questionsPage!=null and questionsPage.totalPages > 0}" class="blog-pagination" aria-label="Pagination">
+
+            <nav th:if="${questionsPage!= null and questionsPage.totalPages > 0}" class="blog-pagination" aria-label="Pagination">
                 <a class="btn btn-outline-primary" th:each="pageNumber : ${pageNumbers}"
-                   th:href="@{''(size=${questionsPage.size}, page=${pageNumber})}"
+                   th:href="@{''(size=${questionsPage.size}, page=${pageNumber}, query=${query})}"
                    th:text=${pageNumber}
                    th:class="${pageNumber==questionsPage.number + 1} ? 'btn btn-outline-primary disabled' : 'btn btn-outline-primary'"></a>
             </nav>
