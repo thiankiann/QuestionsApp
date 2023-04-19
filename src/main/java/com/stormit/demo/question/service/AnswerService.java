@@ -1,56 +1,62 @@
 package com.stormit.demo.question.service;
 
-import com.stormit.demo.question.model.Answer;
-import com.stormit.demo.question.model.Question;
-import com.stormit.demo.question.repository.AnswerRepository;
-import com.stormit.demo.question.repository.QuestionRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.stormit.demo.question.domain.model.Answer;
+import com.stormit.demo.question.domain.model.Question;
+import com.stormit.demo.question.domain.repository.AnswerRepository;
+import com.stormit.demo.question.domain.repository.QuestionRepository;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
 @Service
 public class AnswerService {
 
-    public AnswerRepository answerRepository;
-    public QuestionRepository questionRepository;
+	private final AnswerRepository answerRepository;
 
-    public AnswerService(AnswerRepository answerRepository, QuestionRepository questionRepository) {
-        this.answerRepository = answerRepository;
-        this.questionRepository = questionRepository;
-    }
+	private final QuestionRepository questionRepository;
 
-    @Transactional(readOnly = true)
-    public List<Answer> getAnswers(UUID questionId) {
-        return answerRepository.findByQuestionId(questionId) ;
-    }
+	public AnswerService(AnswerRepository answerRepository, QuestionRepository questionRepository) {
+		this.answerRepository = answerRepository;
+		this.questionRepository = questionRepository;
+	}
 
-    public Answer getAnswer(UUID id) {
-        return new Answer("Answer 1" +id ) ;
-    }
+	@Transactional(readOnly = true)
+	public List<Answer> getAnswers(UUID questionId) {
+		return answerRepository.findByQuestionId(questionId);
+	}
 
-    @Transactional
-    public Answer createAnswer(UUID questionId, Answer answerRequest) {
-        Answer answer = new Answer();
+	@Transactional(readOnly = true)
+	public Answer getAnswer(UUID id) {
+		return answerRepository.getById(id);
+	}
 
-        answer.setName(answerRequest.getName());
+	@Transactional
+	public Answer createAnswer(UUID questionId, Answer answerRequest) {
+		Answer answer = new Answer();
 
-        Question question = questionRepository.getReferenceById(questionId);
-        question.addAnswer(answer);
+		answer.setName(answerRequest.getName());
 
-        return answer;
-    }
+		Question question = questionRepository.getById(questionId);
+		question.addAnswer(answer);
 
-    public Answer updateAnswer(UUID answerId, Answer answerRequest) {
-        Answer answer = answerRepository.getById(answerId);
-        answer.setName(answerRequest.getName());
+		answerRepository.save(answer);
+		questionRepository.save(question);
 
-        return answerRepository.save(answer);
-    }
+		return answer;
+	}
 
-    public void deleteQuestion(UUID answerId) {
-        answerRepository.deleteById(answerId);
-    }
+	@Transactional
+	public Answer updateAnswer(UUID answerId, Answer answerRequest) {
+		Answer answer = answerRepository.getById(answerId);
+		answer.setName(answerRequest.getName());
+
+		return answerRepository.save(answer);
+	}
+
+	@Transactional
+	public void deleteAnswer(UUID answerId) {
+		answerRepository.deleteById(answerId);
+	}
 }
