@@ -2,14 +2,11 @@ package com.stormit.demo.category.service;
 
 import com.stormit.demo.category.domain.model.Category;
 import com.stormit.demo.category.domain.repository.CategoryRepository;
-import com.stormit.demo.question.model.Question;
-import com.stormit.demo.question.repository.QuestionRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -22,8 +19,17 @@ public class CategoryService {
     }
 
     @Transactional(readOnly = true)
-    public List<Category> getCategories() {
-        return categoryRepository.findAll();
+    public Page<Category> getCategories(Pageable pageable) {
+        return getCategories(null, pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Category> getCategories(String search, Pageable pageable) {
+        if(search == null) {
+            return categoryRepository.findAll(pageable);
+        } else {
+            return categoryRepository.findByNameContainingIgnoreCase(search, pageable);
+        }
     }
 
     @Transactional(readOnly = true)
