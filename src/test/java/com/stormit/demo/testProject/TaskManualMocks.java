@@ -1,4 +1,4 @@
-package com.stormit.demo;
+package com.stormit.demo.testProject;
 
 import com.stormit.demo.common.ControllerUtils;
 import org.junit.jupiter.api.Test;
@@ -13,6 +13,8 @@ import java.util.function.Function;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TaskManualMocks {
+
+
 
     @Test
     void shouldGeneratePageNumbers() {
