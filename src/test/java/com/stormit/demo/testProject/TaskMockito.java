@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 
 import java.util.Arrays;
 import java.util.List;
-
+// 9M. Lekcja 4:  Automatyczne mockowanie z Mockito
 public class TaskMockito {
 
     @Test

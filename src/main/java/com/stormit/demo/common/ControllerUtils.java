@@ -12,10 +12,10 @@ public abstract class ControllerUtils {
     public static void paging(Model model, Page page) {
         int totalPages = page.getTotalPages();
         if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)  //equivalent of for(i=1; i <totalPages; i++)
                     .boxed()
                     .collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
+            model.addAttribute("pageNumbers", pageNumbers); //czyli zwraca nazwe i liste (1,2,..,totalPages)
         }
     }
 }
