@@ -67,7 +67,7 @@ public class TaskMockito {
         Model model = Mockito.mock(Model.class);
 
         //when
-        ControllerUtils.paging(model, page);
+        ControllerUtils.paging(model, page);  //czyli zapisuje w atrybucie modelu: 1.) nazwe ("pageNumbers") i 2.) Liste (1,2,3)
 
         //then
         Mockito.verify(model).addAttribute(Mockito.any(), Mockito.any());
