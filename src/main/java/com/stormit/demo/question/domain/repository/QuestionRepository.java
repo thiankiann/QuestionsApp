@@ -19,14 +19,12 @@ public interface QuestionRepository extends JpaRepository<Question, UUID> {
 	Page<Question> findHot(Pageable pageable);
 
 	@Query("from Question q where q.answers.size = 0")
-    Page<Question> findUnanswered(Pageable pageable);
+	Page<Question> findUnanswered(Pageable pageable);
 
-	@Query( value ="select * from questions q where upper(q.name) like upper('%' || :query || '%')",
-			countQuery = "select count(*) from questions q where upper(q.name) like upper('%' || :query || '%')",
-			nativeQuery = true)
-
+	@Query(
+			value = "select * from questions q where upper(q.name) like upper('%' || :query || '%') ",
+			countQuery = "select count(*) from questions q where upper(q.name) like upper('%' || :query || '%') ",
+			nativeQuery = true
+	)
 	Page<Question> findByQuery(String query, Pageable pageable);
-
-
-
 }

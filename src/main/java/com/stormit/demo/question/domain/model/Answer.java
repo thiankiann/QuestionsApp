@@ -1,13 +1,21 @@
 package com.stormit.demo.question.domain.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.UUID;
 
+
 @Entity
 @Table(name = "answers")
+@Getter
+@Setter
+@ToString
 public class Answer {
 
 	@Id
@@ -25,37 +33,5 @@ public class Answer {
 	public Answer(String name) {
 		this();
 		this.name = name;
-	}
-
-	public Question getQuestion() {
-		return question;
-	}
-
-	public void setQuestion(Question question) {
-		this.question = question;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public UUID getId() {
-		return id;
-	}
-
-	public void setId(UUID id) {
-		this.id = id;
-	}
-
-	@Override
-	public String toString() {
-		return "Answer{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				'}';
 	}
 }
