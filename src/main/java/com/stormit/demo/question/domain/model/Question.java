@@ -9,7 +9,6 @@ import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.UUID;
-
 @Entity
 @Table(name = "questions")
 @Getter
