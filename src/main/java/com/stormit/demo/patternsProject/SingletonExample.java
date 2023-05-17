@@ -1,4 +1,4 @@
-package com.stormit.patternsProject;
+package com.stormit.demo.patternsProject;
 
 public class SingletonExample {
 

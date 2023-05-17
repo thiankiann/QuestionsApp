@@ -1,7 +1,8 @@
 package com.stormit.demo.patternsProject;
 
-import com.stormit.patternsProject.SingletonExample;
+
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 
@@ -11,7 +12,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class taskSingleton {
 
 
+    @Autowired
     private ApplicationContext ctx;
+    
 
     @Test
     void shouldCreateOnlyOnceSingletonInstance() {
@@ -21,4 +24,19 @@ public class taskSingleton {
         assertThat(instance1 == instance2).isEqualTo(true);
     }
 
+    @Test
+    void shouldCallSingletonBean() {
+        // given
+        ExampleService bean1 = ctx.getBean(ExampleService.class);
+        ExampleService bean2 = ctx.getBean(ExampleService.class);
+
+        String value = "StormIT";
+
+        // when
+        bean1.setValue(value);
+        String result = bean2.getValue();
+
+        // then
+        assertThat(result.equals(value)).isEqualTo(true);
+    }
 }
